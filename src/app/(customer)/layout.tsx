@@ -19,6 +19,7 @@ export default function Layout({
                 <NavLink href="/products">Products</NavLink>
                 <NavLink href="/orders">My Orders</NavLink>
                 <NavLink href="/api/auth/logout">Logout</NavLink>
+                <NavLink href="/api/auth/me">Profile</NavLink>
             </Nav>
             <div className="container my-6">{children}</div>
         </>
