@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "../lib/utils";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -17,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("bg-background nim-h-screen font-sans antialiased", inter.variable)}>{children}</body>
+      <UserProvider>
+        <body className={cn("bg-background nim-h-screen font-sans antialiased", inter.variable)}>{children}</body>
+      </UserProvider>
     </html>
   );
 }
