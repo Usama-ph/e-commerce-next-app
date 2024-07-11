@@ -21,12 +21,12 @@ model Product {
   createdAt              DateTime               @default(now())
   updatedAt              DateTime               @updatedAt
   orders                 Order[]
-  downloadVerification   DownloadVerification[]
+  downloadVerifications  DownloadVerification[]
 }
 
 model User {
   id        String   @id @default(uuid())
-  email     String
+  email     String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   orders    Order[]
@@ -37,16 +37,17 @@ model Order {
   pricePaidInCents Int
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
-  userId           String
-  productId        String
-  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  product          Product  @relation(fields: [productId], references: [id], onDelete: Restrict)
+
+  userId    String
+  productId String
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Restrict)
 }
 
 model DownloadVerification {
   id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
   expiresAt DateTime
+  createdAt DateTime @default(now())
   productId String
   product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
