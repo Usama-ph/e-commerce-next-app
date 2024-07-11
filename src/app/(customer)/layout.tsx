@@ -9,7 +9,6 @@ export default function Layout({
     children: React.ReactNode;
 }>) {
     const { user, error, isLoading } = useUser();
-    //if (isLoading) return <div>Loading...</div>;
     if (error) return <div>{error.message}</div>;
 
     return user ? (
@@ -32,7 +31,7 @@ export default function Layout({
                     <NavLink href="/orders">My Orders</NavLink>
                     <NavLink href="/api/auth/login">Login</NavLink>
                 </Nav>
-                <div className="container my-6">{children}</div>
+                <div className="container my-6">Login to continue</div>
             </>
         )
 
